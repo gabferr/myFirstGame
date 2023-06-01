@@ -68,9 +68,14 @@ public class Player : MonoBehaviour
             
             myRigibody.velocity = Vector2.up * forceJump;
             myRigibody.transform.localScale = Vector2.one;
-            DOTween.Kill(myRigibody.transform);   
+            DOTween.Kill(myRigibody.transform);
             HandleScaleJump();
         }
+        else if(myRigibody.velocity.x != 0 )
+        {
+            HandleDownJump();
+        }
+        
             
     }
 
@@ -78,5 +83,10 @@ public class Player : MonoBehaviour
     {
         myRigibody.transform.DOScaleY(jumpScaleY, animationDuration).SetLoops(2,LoopType.Yoyo).SetEase(ease);
         myRigibody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+    }
+    private void HandleDownJump()
+    {
+        myRigibody.transform.DOScaleY(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        myRigibody.transform.DOScaleX(jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
     }
 }
