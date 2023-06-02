@@ -71,9 +71,11 @@ public class Player : MonoBehaviour
             DOTween.Kill(myRigibody.transform);
             HandleScaleJump();
         }
-        else if(myRigibody.velocity.x != 0 )
+        else if(myRigibody.velocity.y == 0)
         {
-            HandleDownJump();
+            
+            
+            
         }
         
             
