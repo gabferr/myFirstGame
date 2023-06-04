@@ -25,19 +25,40 @@ public class Player : MonoBehaviour
     private float _currentSpeed;
     private bool _isRunning = false;
 
+    [Header("Animation player")]
+    public Animator animator;
+    public string boolRun = "Run";
+    public string boolRunning = "Running";
+    public float playerSwipeDuration = .1f;
+ 
+
+    private void OnValidate()
+    {
+        if (animator == null) animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
         HandleJumping();
         HandleMoviment();
+
+ 
     }
 
     private void HandleMoviment()
     {
-        if (Input.GetKey(KeyCode.LeftControl))
-            _currentSpeed = SpeedRun; 
-        else
+        if (Input.GetKey(KeyCode.LeftControl)) {
+            _currentSpeed = SpeedRun;
+            animator.speed = 1.5f;
+            //animator.SetBool(boolRunning, true);
+        }
+
+        else {
             _currentSpeed = speed;
+            animator.speed = 1f;
+            // animator.SetBool(boolRunning, false);
+        }
+            
 
 
 
@@ -45,12 +66,25 @@ public class Player : MonoBehaviour
         {
             //myRigibody.MovePosition(myRigibody.position - velocity * Time.deltaTime);
             myRigibody.velocity = new Vector2(-_currentSpeed, myRigibody.velocity.y);
+           if (myRigibody.transform.localScale.x != -1) {
+                myRigibody.transform.DOScaleX(-1, playerSwipeDuration);
+            }
+                animator.SetBool(boolRun, true);
         }
 
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             //myRigibody.MovePosition(myRigibody.position + velocity * Time.deltaTime);
             myRigibody.velocity = new Vector2(_currentSpeed, myRigibody.velocity.y);
+            if (myRigibody.transform.localScale.x != 1)
+            {
+                myRigibody.transform.DOScaleX(1, playerSwipeDuration);
+            }
+            animator.SetBool(boolRun, true);
+        }
+        else
+        {
+            animator.SetBool(boolRun, false);
         }
 
         if(myRigibody.velocity.x >0) {
@@ -71,13 +105,8 @@ public class Player : MonoBehaviour
             DOTween.Kill(myRigibody.transform);
             HandleScaleJump();
         }
-        else if(myRigibody.velocity.y == 0)
-        {
-            
-            
-            
-        }
-        
+      
+    
             
     }
 
@@ -86,9 +115,5 @@ public class Player : MonoBehaviour
         myRigibody.transform.DOScaleY(jumpScaleY, animationDuration).SetLoops(2,LoopType.Yoyo).SetEase(ease);
         myRigibody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
     }
-    private void HandleDownJump()
-    {
-        myRigibody.transform.DOScaleY(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-        myRigibody.transform.DOScaleX(jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-    }
+   
 }
