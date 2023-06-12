@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
-{
+{   
+    public Animator animator;
+    public string triggerAttack = "Attack";
+
     public int damage = 10;
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -14,8 +17,12 @@ public class EnemyBase : MonoBehaviour
         if(health != null)
         {
             health.damage(damage);
+            PlayAtatckAnimation();
         }
     }
 
-   
+   private void PlayAtatckAnimation()
+    {
+        animator.SetTrigger(triggerAttack);
+    }
 }
