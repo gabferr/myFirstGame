@@ -1,19 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MyFisrtGame.Core.Singleton;
 
-public class itemManager : MonoBehaviour
+public class itemManager : Singleton<itemManager> 
 {
     public int coins;
-    public static itemManager Instance;
 
-    public void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
     private void Start()
     {
         Reset();
