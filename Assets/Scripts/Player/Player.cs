@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D myRigibody;
     public Ease ease = Ease.OutBack;
+    public HealthBase _healthBase;
 
     [Header("Speed setup")]
     public Vector2 friction = new Vector2(.1f, 0);
@@ -23,14 +24,31 @@ public class Player : MonoBehaviour
     public float animationDuration = .3f;
 
     private float _currentSpeed;
-    private bool _isRunning = false;
 
     [Header("Animation player")]
     public Animator animator;
     public string boolRun = "Run";
+    public string triggerDeath = "Death";
     public string boolRunning = "Running";
     public float playerSwipeDuration = .1f;
- 
+
+    
+    public float timeToDestroy = 1f;
+
+    private void Awake()
+    {
+        if (_healthBase != null)
+        {
+            _healthBase.OnKill += onPlayerKill;
+        }
+
+    }
+    private void onPlayerKill()
+    {
+        _healthBase.OnKill -= onPlayerKill;
+        PlayKillAnimation();
+        Destroy(gameObject, timeToDestroy);
+    }
 
     private void OnValidate()
     {
@@ -115,5 +133,15 @@ public class Player : MonoBehaviour
         myRigibody.transform.DOScaleY(jumpScaleY, animationDuration).SetLoops(2,LoopType.Yoyo).SetEase(ease);
         myRigibody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
     }
-   
+
+    private void PlayKillAnimation()
+    {
+        animator.SetTrigger(triggerDeath);
+    }
+
+    public void OnDestroy()
+    {
+        Destroy(gameObject);
+    }
+
 }
