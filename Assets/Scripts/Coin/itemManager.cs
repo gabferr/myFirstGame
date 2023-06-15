@@ -6,7 +6,7 @@ using MyFisrtGame.Core.Singleton;
 
 public class itemManager : Singleton<itemManager> 
 {
-    public int coins;
+    public SOint coins;
     public TextMeshProUGUI uiCoins;
 
     private void Start()
@@ -15,17 +15,17 @@ public class itemManager : Singleton<itemManager>
     }
     public void Reset()
     {
-        coins = 0;
+        coins.value = 0;
     }
 
     public void AddCoins(int amount = 1)
     {
-        coins += amount;
+        coins.value += amount;
         updateUI();
     }
     private void updateUI()
     {
         //uiCoins.text = coins.ToString();
-        UiInGameManager.Instance.updateTextCoin(coins.ToString());
+        //UiInGameManager.Instance.updateTextCoin(coins.value.ToString());
     }
 }

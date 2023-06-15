@@ -518,8 +518,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   triggerAttack: Attack
+  triggerKill: Kill
   damage: 5
   healthBase: {fileID: 0}
+  timeToDestroy: 1
 --- !u!61 &117532010
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3674,7 +3676,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad4085f0e3b1c14e91f5b4cf2041f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 0
+  coins: {fileID: 11400000, guid: 009ddcaf398744246b5b7adc153a82a9, type: 2}
+  uiCoins: {fileID: 1491077851}
 --- !u!4 &1375562164
 Transform:
   m_ObjectHideFlags: 0
@@ -4046,6 +4049,7 @@ GameObject:
   - component: {fileID: 1491077850}
   - component: {fileID: 1491077852}
   - component: {fileID: 1491077851}
+  - component: {fileID: 1491077853}
   m_Layer: 5
   m_Name: QTD_Coins
   m_TagString: Untagged
@@ -4092,7 +4096,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x1
+  m_text: x0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -4169,6 +4173,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491077849}
   m_CullTransparentMesh: 1
+--- !u!114 &1491077853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491077849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e73304f6fd27b7e40958e19924bed03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soInt: {fileID: 11400000, guid: 009ddcaf398744246b5b7adc153a82a9, type: 2}
+  uiText: {fileID: 1491077851}
 --- !u!1 &1506917499
 GameObject:
   m_ObjectHideFlags: 0
@@ -4750,8 +4768,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 345410692}
   triggerAttack: Attack
-  damage: 10
+  triggerKill: Death
+  damage: 5
   healthBase: {fileID: 1698003003}
+  timeToDestroy: 1
 --- !u!4 &1698003001
 Transform:
   m_ObjectHideFlags: 0
@@ -4800,8 +4820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90af2500851bb40428e4d18139c750d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLife: 10
-  destroyOnKill: 1
+  startLife: 5
+  destroyOnKill: 0
   delayOnKill: 0
   flashColor: {fileID: 0}
 --- !u!114 &1698003004
@@ -4942,6 +4962,19 @@ MonoBehaviour:
   - {fileID: 985431006}
   color: {r: 1, g: 0, b: 0, a: 1}
   duration: 0.1
+--- !u!114 &1714758972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714758969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf9639d0da720640b97653cdc8474be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1950356271}
 --- !u!212 &1719987100 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5421898557666172458, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
@@ -5769,18 +5802,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigibody: {fileID: 1950356270}
-  ease: 27
-  friction: {x: 0.2, y: 0}
-  speed: 15
-  SpeedRun: 15
-  forceJump: 20
-  jumpScaleY: 1.1
-  jumpScaleX: 0.75
-  animationDuration: 0.35
+  _healthBase: {fileID: 1950356272}
+  soPlayerSetup: {fileID: 11400000, guid: aeef8f452d99075459583f2946d646df, type: 2}
   animator: {fileID: 277452479}
-  boolRun: Run
-  boolRunning: Running
-  playerSwipeDuration: 0.1
+  timeToDestroy: 1
 --- !u!114 &1950356272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5794,7 +5819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLife: 10
-  destroyOnKill: 1
+  destroyOnKill: 0
   delayOnKill: 3
   flashColor: {fileID: 1714758971}
 --- !u!1 &1953592270
