@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private float _currentSpeed;
 
     public Animator animator;
+
     public float timeToDestroy = 1f;
 
     private void Awake()
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour
         {
             _healthBase.OnKill += onPlayerKill;
         }
-
+        
     }
     private void onPlayerKill()
     {
@@ -70,7 +71,7 @@ public class Player : MonoBehaviour
            if (myRigibody.transform.localScale.x != -1) {
                 myRigibody.transform.DOScaleX(-1, soPlayerSetup.playerSwipeDuration);
             }
-                animator.SetBool(soPlayerSetup.boolRun, true);
+            animator.SetBool(soPlayerSetup.boolRun, true);
         }
 
         else if (Input.GetKey(KeyCode.RightArrow))

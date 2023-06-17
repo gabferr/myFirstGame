@@ -9,9 +9,22 @@ public class itemManager : Singleton<itemManager>
     public SOint coins;
     public TextMeshProUGUI uiCoins;
 
+    public SOString name;
+    public TextMeshProUGUI uiName;
+
+
+
     private void Start()
     {
         Reset();
+       
+    }
+    private void Update()
+    {
+        if (coins != null)
+        {
+            uiName.text = name.value;
+        }
     }
     public void Reset()
     {
@@ -27,5 +40,6 @@ public class itemManager : Singleton<itemManager>
     {
         //uiCoins.text = coins.ToString();
         //UiInGameManager.Instance.updateTextCoin(coins.value.ToString());
+       
     }
 }
