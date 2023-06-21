@@ -5,6 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 using System.Diagnostics.SymbolStore;
 using UnityEngine.U2D.IK;
+using System.Net.Sockets;
 
 public class Player : MonoBehaviour
 {
@@ -129,7 +130,8 @@ public class Player : MonoBehaviour
 
     public void PlayJumpVFX()
     {
-        if (jumpVFX != null) jumpVFX.Play();
+        //if (jumpVFX != null) jumpVFX.Play();
+        VFXManager.Instance.PlayVFXByType(VFXManager.VFXType.JUMP,transform.position);
     }
 
     private void HandleScaleJump()
