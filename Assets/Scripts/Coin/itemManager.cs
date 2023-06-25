@@ -9,7 +9,7 @@ public class itemManager : Singleton<itemManager>
     public SOint coins;
     public TextMeshProUGUI uiCoins;
 
-    public SOString name;
+    public new SOString name;
     public TextMeshProUGUI uiName;
 
 

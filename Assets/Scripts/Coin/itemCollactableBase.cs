@@ -8,6 +8,9 @@ public class itemCollactableBase : MonoBehaviour
     public new ParticleSystem particleSystem;
     public int timeToHide = 3;
     public GameObject graphicItem;
+
+    [Header("Sounds")]
+    public AudioSource audioSorce;
     private void Awake()
     {
        // if (particleSystem != null) particleSystem.transform.SetParent(null);
@@ -30,7 +33,8 @@ public class itemCollactableBase : MonoBehaviour
         gameObject.SetActive(false);
     }
     protected virtual void OnCollect() {
-    if(particleSystem != null) particleSystem.Play();
-        
+    if(particleSystem != null) particleSystem.Play();   
+    if(audioSorce != null) audioSorce.Play();
     }
+    
 }
