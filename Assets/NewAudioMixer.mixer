@@ -113,9 +113,9 @@ AudioMixerController:
   m_UpdateMode: 0
   m_ExposedParameters:
   - guid: 6b842cb7645b60a4592c5178bdafa2e5
-    name: MyExposedParam 1
+    name: VolumeAmbient
   - guid: 5778368bff1a53046bd429e57deb2611
-    name: MyExposedParam
+    name: VolumeSFX
   m_AudioMixerGroupViews:
   - guids:
     - a92887debc07eae44ae50ee99049d275
@@ -123,7 +123,7 @@ AudioMixerController:
     - 1ca38bdbbe8c9d64f8aa47581d3cd9db
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: -8454812029257923809}
+  m_TargetSnapshot: {fileID: -6101255238649194479}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0

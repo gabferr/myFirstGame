@@ -13,6 +13,10 @@ public class GunBase : MonoBehaviour
 
     public Transform playerSideReference;
 
+    public AudioRandomPlayAudioClips ramdomShot;
+
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))
@@ -36,9 +40,13 @@ public class GunBase : MonoBehaviour
 
     public void Shoot()
     {
-        var projectile = Instantiate(prefabProjectile); 
+        if (ramdomShot != null) { ramdomShot.PlayRandom(); }
+        
+        var projectile = Instantiate(prefabProjectile);
+        
         projectile.transform.position = positionToShoot.position;
-        projectile.side = playerSideReference.transform.localScale.x;  
+        projectile.side = playerSideReference.transform.localScale.x;
+    
     }
 
 }
